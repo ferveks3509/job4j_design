@@ -46,8 +46,5 @@ public class GenericsAnimals {
         generics.printLowerBouncedWildCard(first);
         generics.printLowerBouncedWildCard(second);
         //generics.printLowerBouncedWildCard(third);
-        for (Tiger tiger : third) {
-            System.out.println(tiger.toString());
-        }
     }
 }
