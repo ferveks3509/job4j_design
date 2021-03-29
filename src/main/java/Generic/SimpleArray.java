@@ -1,6 +1,7 @@
 package Generic;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SimpleArray<T> implements Iterable<T> {
@@ -26,13 +27,7 @@ public class SimpleArray<T> implements Iterable<T> {
 
     public T get(int index) {
         Objects.checkIndex(index, position);
-        T rsl = null;
-        for (int i = 0; i <= index; i++) {
-            if (i == index) {
-                rsl = array[i];
-            }
-        }
-        return rsl;
+        return array[index];
     }
 
     @Override
@@ -47,6 +42,9 @@ public class SimpleArray<T> implements Iterable<T> {
 
             @Override
             public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
                 return array[size++];
             }
         };
