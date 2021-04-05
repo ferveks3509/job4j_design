@@ -20,8 +20,17 @@ public class SimpleArray<T> implements Iterable<T> {
     }
 
     public void add(T model) {
+        if (size == container.length) {
+            container = sizeArr();
+        }
         this.container[size++] = model;
         modArr++;
+    }
+
+    private Object[] sizeArr() {
+        Object[] newArr = new Object[size * 2];
+        System.arraycopy(container, 0, newArr, 0, size * 2);
+        return newArr;
     }
 
     @Override
