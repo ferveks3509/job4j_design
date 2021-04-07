@@ -60,7 +60,7 @@ public class SimpleLinkedList<E> implements List<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                if (failFast != position) {
+                if (failFast != modeCount) {
                     throw new ConcurrentModificationException();
                 }
                 return get(position++);
