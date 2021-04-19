@@ -1,6 +1,5 @@
 package map;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +13,7 @@ public class Start {
         data.put(first, new Object());
         data.put(second, new Object());
         System.out.println(data.size());
-        System.out.println(first.hashCode() / 16);
-        System.out.println(second.hashCode() / 16);
+        System.out.println(data.get(first));
+        System.out.println(data.get(second));
     }
 }
