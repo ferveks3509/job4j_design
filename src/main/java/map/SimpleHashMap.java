@@ -61,15 +61,24 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
             return table[0] == null ? null : table[0].value;
         }
         int index = indexFor(key);
-        return table[index].value;
+        V temp = null;
+        if (table[index].key.equals(key)) {
+            temp = table[index].value;
+        }
+        return temp;
     }
 
     public boolean delete(K key) {
         int index = indexFor(key);
-        size--;
-        modCount--;
-        return table[index].value == null;
+        boolean rsl = false;
+        if (table[index].key.equals(key)) {
+            size--;
+            table[index] = null;
+            rsl = true;
+        }
+        return rsl;
     }
+
     public int size() {
         return this.size;
     }
@@ -109,6 +118,7 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     }
 
     private void resizeTable() {
+        size = 0;
         Node<K, V>[] oldTable = table;
         table = new Node[oldTable.length * 2];
         for (Node<K, V> node : oldTable) {
@@ -123,11 +133,20 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     public Iterator<K> iterator() {
         return new Iterator() {
             int position = 0;
+            int sizeEl = 0;
             int modArr = modCount;
 
             @Override
             public boolean hasNext() {
-                return size > position;
+                return sizeEl < table.length;
+            }
+            private Node<K, V> ifNext() {
+                Node<K, V> node = null;
+                while (node == null) {
+                    node = table[position++];
+                }
+                sizeEl++;
+                return node;
             }
 
             @Override
@@ -138,9 +157,8 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
                 if (modArr != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return table[position];
+                return ifNext();
             }
         };
     }
-
 }
