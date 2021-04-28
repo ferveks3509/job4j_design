@@ -62,8 +62,10 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
         }
         int index = indexFor(key);
         V temp = null;
-        if (table[index].key.equals(key)) {
-            temp = table[index].value;
+        if (table[index].next != null) {
+            if (table[index].key.equals(key)) {
+                temp = table[index].value;
+            }
         }
         return temp;
     }
@@ -71,10 +73,13 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     public boolean delete(K key) {
         int index = indexFor(key);
         boolean rsl = false;
-        if (table[index].key.equals(key)) {
-            size--;
-            table[index] = null;
-            rsl = true;
+        if (table[index].next != null) {
+            if (table[index].key.equals(key)) {
+                size--;
+                modCount++;
+                table[index] = null;
+                rsl = true;
+            }
         }
         return rsl;
     }
@@ -138,7 +143,10 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
 
             @Override
             public boolean hasNext() {
-                return sizeEl < table.length;
+                if (ifNext() != null) {
+                    return sizeEl < table.length;
+                }
+                return false;
             }
             private Node<K, V> ifNext() {
                 Node<K, V> node = null;
