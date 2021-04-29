@@ -138,13 +138,13 @@ public class SimpleHashMap<K, V> implements Iterable<K> {
     public Iterator<K> iterator() {
         return new Iterator() {
             int position = 0;
-            int sizeEl = 0;
+            int sizeEl = SimpleHashMap.this.size;
             int modArr = modCount;
 
             @Override
             public boolean hasNext() {
                 if (ifNext() != null) {
-                    return sizeEl < table.length;
+                    return 0 < sizeEl;
                 }
                 return false;
             }
