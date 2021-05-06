@@ -1,7 +1,6 @@
 package io;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,9 +19,23 @@ public class LogFilter {
         }
         return rsl;
     }
+    public static void save(List<String> list, String file) {
+        try (PrintWriter printWriter = new PrintWriter(
+                new BufferedOutputStream(
+                        new FileOutputStream(file)
+                )
+        )){
+            for (String el : list) {
+                printWriter.println(el);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         List<String> log = filter("log.txt");
         log.forEach(System.out::println);
+        save(log, "404.txt");
     }
 }
