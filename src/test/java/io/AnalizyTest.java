@@ -4,8 +4,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 import static org.junit.Assert.*;
 
@@ -17,6 +16,9 @@ public class AnalizyTest {
     @Test
     public void unavailable() throws IOException {
         File source = folder.newFile("unavailable.csv");
-        File target = folder.newFile();
+        File target = folder.newFile("logServer.txt");
+        try (PrintWriter out = new PrintWriter(new BufferedOutputStream(new FileOutputStream(target)))) {
+            out.write();
+        }
     }
 }

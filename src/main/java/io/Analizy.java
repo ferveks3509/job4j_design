@@ -14,11 +14,11 @@ public class Analizy {
             while ((line = in.readLine()) != null) {
                 String status = line.split(" ")[0];
                 String time = line.split(" ")[1];
-                if (status.contains("400") || status.contains("500") || !flag) {
+                if (status.contains("400") || status.contains("500") && !flag) {
                     rsl.add(time + ";");
                     flag = true;
                 }
-                if (status.contains("200") || status.contains("300") || flag) {
+                if (status.contains("200") || status.contains("300") && flag) {
                     rsl.add(time + System.lineSeparator());
                     flag = false;
                 }
