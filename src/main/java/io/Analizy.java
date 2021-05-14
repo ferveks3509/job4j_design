@@ -45,10 +45,5 @@ public class Analizy {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try (BufferedReader in = new BufferedReader(new FileReader("unavailable.csv"))) {
-            in.readLine();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
