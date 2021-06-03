@@ -12,7 +12,10 @@ public class Search {
         return searchFiles.getPath();
     }
     public static void main(String[] args) throws IOException {
-        Path path = Paths.get(".");
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Укажите дирикторию");
+        }
+        Path path = Paths.get(args[0]);
         search(path, path1 -> path.toFile().getName().endsWith("js")).forEach(System.out::println);
     }
 }
