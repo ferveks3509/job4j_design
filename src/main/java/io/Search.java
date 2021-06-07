@@ -16,6 +16,6 @@ public class Search {
             throw new IllegalArgumentException("Укажите дирикторию");
         }
         Path path = Paths.get(args[0]);
-        search(path, path1 -> path.toFile().getName().endsWith("js")).forEach(System.out::println);
+        search(path, path1 -> path.toFile().getName().endsWith(args[1])).forEach(System.out::println);
     }
 }
