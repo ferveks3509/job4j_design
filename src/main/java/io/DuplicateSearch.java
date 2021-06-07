@@ -9,18 +9,10 @@ import java.util.List;
 
 public class DuplicateSearch {
     public static void search(String file) throws Exception {
-        Path path = Paths.get(file);
         DuplicateVisitor duplicateVisitor = new DuplicateVisitor();
-        Files.walkFileTree(path, duplicateVisitor);
-        List<Path> rsl = duplicateVisitor.get();
-        Comparator<Path> comparator = Comparator.comparing(Path::getFileName);
-        rsl.sort(comparator);
-        for (int i = 0; i < rsl.size() - 1; i++) {
-            Path first = rsl.get(i);
-            Path second = rsl.get(i + 1);
-            if (first.equals(second) && first.toFile().length() == second.toFile().length()) {
-                System.out.println(first.toAbsolutePath());
-            }
+        Files.walkFileTree(Path.of(file), duplicateVisitor);
+        for (FileProperty el : duplicateVisitor.get()) {
+            System.out.println(el.getName());
         }
     }
 }
