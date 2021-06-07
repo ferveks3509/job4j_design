@@ -7,10 +7,21 @@ public class ArgsName {
     private final Map<String, String> values = new HashMap<>();
 
     public String get(String key) {
+        if (values.size() == 0) {
+            throw new IllegalArgumentException("empty");
+        }
         return values.get(key);
     }
 
     private void parse(String[] args) {
+        for (String el : args) {
+            String key = el.split("=")[0];
+            String value = el.split("=")[1];
+            if (key == null || value == null) {
+                throw new IllegalArgumentException("параметры должны иметь ключ-значение");
+            }
+            values.put(key, value);
+        }
     }
 
     public static ArgsName of(String[] args) {
