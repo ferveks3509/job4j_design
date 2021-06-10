@@ -15,12 +15,11 @@ public class ArgsName {
 
     private void parse(String[] args) {
         for (String el : args) {
-            String key = el.split("=")[0];
-            String value = el.split("=")[1];
-            if (key == null || value == null) {
+            String[] key = el.split("=");
+            if (key.length != 2) {
                 throw new IllegalArgumentException("параметры должны иметь ключ-значение");
             }
-            values.put(key, value);
+            values.put(key[0], key[1]);
         }
     }
 
