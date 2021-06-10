@@ -12,7 +12,7 @@ public class Search {
         return searchFiles.getPath();
     }
     public static void main(String[] args) throws IOException {
-        if (args.length == 0) {
+        if (args.length < 2) {
             throw new IllegalArgumentException("Укажите дирикторию");
         }
         Path path = Paths.get(args[0]);
