@@ -15,6 +15,7 @@ public class ArgsName {
 
     private void parse(String[] args) {
         for (String el : args) {
+            el = el.substring(1);
             String[] key = el.split("=");
             if (key.length != 2) {
                 throw new IllegalArgumentException("параметры должны иметь ключ-значение");
