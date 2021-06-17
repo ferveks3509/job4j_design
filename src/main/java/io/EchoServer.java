@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class EchoServer {
     public static void main(String[] args) throws IOException {
@@ -16,20 +15,22 @@ public class EchoServer {
                 try (OutputStream out = socket.getOutputStream();
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
-                    out.write("HTTP/1.1 200 OK\r\n\"".getBytes());
-                   for (String text = in.readLine(); text != null && !text.isEmpty(); text = in.readLine()) {
-                       System.out.println(text);
-                       String str;
-                       if (text.contains("?")) {
-                           str = text.split("/")[1];
-                           str = str.split(" ")[0];
-                           str = str.substring(1);
-                           if (str.equals("bye")) {
-                               server.close();
-                           }
-                       }
-                   }
-                   out.write("hello\r\n".getBytes());
+                    out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
+                    for (String text = in.readLine(); text != null && !text.isEmpty(); text = in.readLine()) {
+                        System.out.println(text);
+                        if (text.contains("?")) {
+                            text = text.split("/")[1];
+                            text = text.split(" ")[0];
+                            if (text.equals("?msg=Hello")) {
+                                out.write("Hello, dear friend.\r\n".getBytes());
+                            } else if (text.equals("?msg=Exit")) {
+                                out.write("Server close\r\n".getBytes());
+                                server.close();
+                            } else {
+                                out.write("What\r\n".getBytes());
+                            }
+                        }
+                    }
                 }
             }
         }
