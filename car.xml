@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<car have="true" engine="1.6" mark="priora">
+    <carColor>
+        <color>white</>
+    </carColor>
+    <equipmentes>
+        <equipmen>full</equipmen>
+    </equipmentes>
+</car>
