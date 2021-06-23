@@ -44,13 +44,12 @@ public class Car {
                         + "\"mark\":\"priora\","
                         + "\"CarColor\":"
                             + "{"
-                                + "\"color\":\"white\","
+                                + "\"color\":\"white\""
                             + "},"
                         + "\"equipment\":"
                             + "[\"full\"]"
                         + "}";
         final Car carMod = gson.fromJson(carJason, Car.class);
         System.out.println(carMod);
-
     }
 }
