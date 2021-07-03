@@ -16,7 +16,7 @@ name varchar(10),
 product_id int references product(id)
 );
 
-insert into shop(product_id) values
+insert into shop(name, product_id) values
 ('magnit',1),
 ('paterka',2),
 ('globus',3);
