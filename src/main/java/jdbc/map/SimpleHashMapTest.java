@@ -1,5 +1,6 @@
-package map;
+package jdbc.map;
 
+import map.SimpleHashMap;
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -13,7 +14,7 @@ public class SimpleHashMapTest {
     public void insert() {
         SimpleHashMap<Integer, String> first = new SimpleHashMap<>();
         first.insert(1, "one");
-        assertThat(first.get(1), is("one"));
+        Assert.assertThat(first.get(1), Is.is("one"));
     }
 
     @Test
@@ -21,7 +22,7 @@ public class SimpleHashMapTest {
         SimpleHashMap<Integer, String> first = new SimpleHashMap<>();
         first.insert(1, "one");
         first.insert(2, "two");
-        assertThat(first.get(2), is("two"));
+        Assert.assertThat(first.get(2), Is.is("two"));
     }
 
     @Test
@@ -30,6 +31,6 @@ public class SimpleHashMapTest {
         first.insert(1, "one");
         first.insert(2, "two");
         first.delete(1);
-        assertThat(first.size(), is(1));
+        Assert.assertThat(first.size(), Is.is(1));
     }
 }
