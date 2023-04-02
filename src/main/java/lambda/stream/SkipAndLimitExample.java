@@ -1,7 +1,9 @@
 package lambda.stream;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class SkipAndLimitExample {
@@ -20,6 +22,9 @@ public class SkipAndLimitExample {
                 .collect(Collectors.toList());
         System.out.println(rslSecond);
 
-
+        List<Integer> list = Arrays.asList(4, 5, 1, 3, 2);
+        Optional<Integer> minEl = list.stream()
+                        .min(Comparator.naturalOrder());
+        System.out.println(minEl.get());
     }
 }
