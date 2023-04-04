@@ -1,7 +1,5 @@
 package io;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -45,7 +43,7 @@ public class Contact implements Serializable {
             Contact temp = (Contact) ois.readObject();
             System.out.println(temp);
         }
-         */
+
         List<String> list = new ArrayList<>();
         list.add("student");
         list.add("free");
@@ -58,5 +56,7 @@ public class Contact implements Serializable {
         System.out.println(jsonObject.toString());
 
         System.out.println(new JSONObject(contact).toString());
+
+         */
     }
 }

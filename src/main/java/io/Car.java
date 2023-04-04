@@ -4,8 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.internal.$Gson$Preconditions;
-import org.json.JSONArray;
-import org.json.JSONObject;
+
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -121,7 +120,7 @@ public class Car {
             System.out.println(rsl);
         } catch (Exception e) {
         }
-         */
+
         List<String> q = List.of("full");
         Car car = new Car(true, 1.6, "priora", new CarColor("white"), q);
         JSONObject jsonCarColor = new JSONObject("{\"color\":\"white\"}");
@@ -138,6 +137,8 @@ public class Car {
         System.out.println(jsonObject.toString());
 
         System.out.println(new JSONObject(car).toString());
+
+         */
     }
 }
 
