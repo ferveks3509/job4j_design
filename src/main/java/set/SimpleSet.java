@@ -1,12 +1,12 @@
 package set;
 
-import сollection.SimpleArray;
+import сollection.SimpleArrayList;
 
 import java.util.Iterator;
 import java.util.Objects;
 
 public class SimpleSet<T> implements Set<T> {
-    private SimpleArray<T> set = new SimpleArray<>();
+    private SimpleArrayList<T> set = new SimpleArrayList<>(10);
     @Override
     public boolean add(T value) {
         if (!contains(value)) {

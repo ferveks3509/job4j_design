@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class SimpleLinkedList<E> implements List<E> {
+public class SimpleLinkedList<E> implements SimpleList<E> {
 
     private Node<E> first;
     private Node<E> last;
@@ -42,6 +42,21 @@ public class SimpleLinkedList<E> implements List<E> {
             }
         }
             return node.item;
+    }
+
+    @Override
+    public E set(int index, E newValue) {
+        return null;
+    }
+
+    @Override
+    public E remove(int index) {
+        return null;
+    }
+
+    @Override
+    public int size() {
+        return 0;
     }
 
     @Override

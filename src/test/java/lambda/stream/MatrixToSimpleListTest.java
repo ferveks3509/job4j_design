@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class MatrixToListTest {
+public class MatrixToSimpleListTest {
 
     @Test
     public void whenInputSquareMatrix() {
