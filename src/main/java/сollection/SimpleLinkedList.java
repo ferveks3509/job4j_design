@@ -6,42 +6,39 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SimpleLinkedList<E> implements SimpleList<E> {
-
-    private Node<E> first;
-    private Node<E> last;
     private int size = 0;
-    private int modeCount = 0;
+    private int modCount = 0;
+    private Node<E> head;
 
     @Override
     public void add(E value) {
-        Node<E> node = last;
-        Node<E> newNode = new Node<>(node, value, null);
-        last = newNode;
-        if (node == null) {
-            first = newNode;
+        Node<E> newNode = new Node<>(value, null);
+        if (head == null) {
+            head = newNode;
         } else {
-            node.next = newNode;
+            Node<E> current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
         }
         size++;
-        modeCount++;
+        modCount++;
     }
 
     @Override
     public E get(int index) {
         Objects.checkIndex(index, size);
-        Node<E> node;
-        if (index < size && index < (size / 2)) {
-            node = first;
-            for (int i = 0; i < index; i++) {
-                node = node.next;
-            }
-        } else {
-            node = last;
-            for (int i = size - 1; i > index; i--) {
-                node = node.prev;
-            }
+        Iterator<E> it = iterator();
+        E el = null;
+        for (int i = 0; i <= index; i++) {
+            el = it.next();
         }
-            return node.item;
+        return el;
+    }
+
+    public int size() {
+        return size;
     }
 
     @Override
@@ -55,30 +52,34 @@ public class SimpleLinkedList<E> implements SimpleList<E> {
     }
 
     @Override
-    public int size() {
-        return 0;
-    }
-
-    @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
-            int failFast = modeCount;
-            int position = 0;
+            private Node<E> el = head;
+            private Node<E> nextEl;
+            final int failFast = modCount;
 
             @Override
             public boolean hasNext() {
-                return size > position;
+                checkEx();
+                return el != null;
             }
 
             @Override
             public E next() {
+                checkEx();
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                if (failFast != modeCount) {
+                nextEl = el;
+                el = el.next;
+                return nextEl.item;
+
+            }
+
+            private void checkEx() {
+                if (failFast != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return get(position++);
             }
         };
     }
@@ -86,12 +87,10 @@ public class SimpleLinkedList<E> implements SimpleList<E> {
     private static class Node<E> {
         private E item;
         private Node<E> next;
-        private Node<E> prev;
 
-        public Node(Node<E> prev, E item, Node<E> next) {
-            this.item = item;
+        public Node(E element, Node<E> next) {
+            this.item = element;
             this.next = next;
-            this.prev = prev;
         }
     }
 }
