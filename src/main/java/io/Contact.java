@@ -2,8 +2,6 @@ package io;
 
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Contact implements Serializable {
     private static final long serialVersionUID = 1L;

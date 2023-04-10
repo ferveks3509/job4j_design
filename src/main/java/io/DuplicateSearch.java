@@ -2,10 +2,6 @@ package io;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.SQLOutput;
-import java.util.Comparator;
-import java.util.List;
 
 public class DuplicateSearch {
     public static void search(String file) throws Exception {

@@ -3,7 +3,6 @@ package io;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-import test.Analize;
 
 import java.io.*;
 import java.util.List;
