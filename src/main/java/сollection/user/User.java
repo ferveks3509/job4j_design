@@ -15,6 +15,19 @@ public class User {
         this.birthDay = birthDay;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return children == user.children && Objects.equals(name, user.name) && Objects.equals(birthDay, user.birthDay);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, children, birthDay);
+    }
+
     public static void main(String[] args) {
         HashMap<User, Object> map = new HashMap<>(16);
         Calendar calendar = Calendar.getInstance();
@@ -36,5 +49,6 @@ public class User {
                 hashCodeSecond, hashSecond, bucketSecond);
         System.out.println();
         System.out.println(map.get(first).equals(map.get(second)));
+        System.out.println(first.equals(second));
     }
 }
