@@ -7,7 +7,7 @@ import java.util.List;
 public class LogFilter {
     public static List<String> filter(String file) {
         List<String> rsl = new ArrayList<>();
-        try (BufferedReader in = new BufferedReader(new FileReader("log.txt"))) {
+        try (BufferedReader in = new BufferedReader(new FileReader(file))) {
             for (String line = in.readLine(); line != null; line = in.readLine()) {
                 String[] spl = line.split(" ");
                 if (spl[spl.length - 2].contains("404")) {
@@ -19,14 +19,13 @@ public class LogFilter {
         }
         return rsl;
     }
+
     public static void save(List<String> list, String file) {
-        try (PrintWriter printWriter = new PrintWriter(
+        try (PrintWriter out = new PrintWriter(
                 new BufferedOutputStream(
-                        new FileOutputStream(file)
-                )
-        )){
+                        new FileOutputStream(file)))) {
             for (String el : list) {
-                printWriter.println(el);
+                out.println(el);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -34,8 +33,7 @@ public class LogFilter {
     }
 
     public static void main(String[] args) {
-        List<String> log = filter("log.txt");
-        log.forEach(System.out::println);
+        List<String> log = filter("data/log.txt");
         save(log, "404.txt");
     }
 }
