@@ -1,0 +1,4 @@
+2023-04-18 12:14:26,184 DEBUG io.UsageLog4j:main:20 - User info name : Vasiliy Petrov, two : 2, three : 3, four : 4, five : 5, six : 6.0, seven : 7.0, eight : true, nine : q
+2023-04-18 12:14:26,189 ERROR io.UsageLog4j:main:26 - ex example
+java.lang.Exception: Not support code
+	at io.UsageLog4j.main(UsageLog4j.java:24)
