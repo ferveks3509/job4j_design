@@ -17,9 +17,13 @@ public class UsageLog4j {
         double seven = 7;
         boolean eight = true;
         char nine = 'q';
-
-
         LOG.debug("User info name : {}, two : {}, three : {}, four : {}, five : {}, six : {}, seven : {}, eight : {}, nine : {}"
                 , name, two, three, four, five, six, seven, eight, nine);
+
+        try {
+            throw new Exception("Not support code");
+        } catch (Exception e) {
+            LOG.error("ex example", e);
+        }
     }
 }
