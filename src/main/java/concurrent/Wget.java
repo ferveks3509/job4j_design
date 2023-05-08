@@ -17,5 +17,8 @@ public class Wget {
                 }
         );
         th.start();
+        System.out.println("new commit");
+        System.out.println("new commit");
+        System.out.println("new commit");
     }
 }
