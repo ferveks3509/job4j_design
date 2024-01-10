@@ -17,6 +17,8 @@ create table cars(
     engine_id int references car_engine(id),
     transmission_id int references car_transmission(id)
 );
+
+
 select c.name, ct.name, ce.name, cb.name from cars c left join car_transmission ct on c.transmission_id = ct.id
 left join car_engine ce on c.engine_id = ce.id
 left join car_bodies cb on c.body_id = cb.id;
